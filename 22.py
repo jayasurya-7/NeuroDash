@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 
 # Define the source directories and the destination directory
-source_dirs = ['D:/DEMO/mars', 'D:/DEMO/mobbo', 'D:/DEMO/hypercube', 'D:/DEMO/R2']
+source_dirs = ['D:/DEMO/mars', 'D:/DEMO/pluto', 'D:/DEMO/hypercube', 'D:/DEMO/R2']
 destination_dir = "D:\\DEMO\\DESTINATION"
 PATIENTS_CSV = os.path.join(destination_dir, 'patients.csv')
 
@@ -79,7 +79,7 @@ def save_to_destination(unique_id, device_name, summary, game_durations, session
 
     # Create devicename.csv with fields 'date' and 'minutes'
     device_summary = summary[['Date', 'TotalDuration']].copy()
-    device_summary['minutes'] = device_summary['TotalDuration']   # Convert seconds to minutes
+    device_summary['minutes'] = device_summary['TotalDuration'] / 60  # Convert seconds to minutes
     device_summary = device_summary[['Date', 'minutes']]
     device_summary_file = os.path.join(device_dir, f'{device_name}.csv')
     device_summary.to_csv(device_summary_file, index=False)
