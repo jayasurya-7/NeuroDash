@@ -1,0 +1,260 @@
+/* General styling */
+body {
+    font-family: 'Lexend', sans-serif;
+    font-size: 1em;
+    color: #333;
+    margin: 0;
+    background-color: #f5f5f5; /* Light background for a softer look */
+}
+
+
+.container{
+    display: grid;
+    grid-template-columns: 18% 82%;
+    
+    border: 1px solid rgb(252, 252, 252);
+    /* background-color: #130a64;
+     */
+     background-color: #003366;
+
+     margin: 0;
+    /* color: rgb(91, 236, 241); */
+    height:100vh;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    border-radius: 5px;
+}
+
+
+/* Suggestion Box */
+#suggestions {
+    cursor: pointer;
+    padding: 8px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    background-color: #ffffff; /* White background for contrast */
+    border-radius: 5px;
+    margin-bottom: 8px;
+    min-width: 200px;
+    max-width: 400px;
+    position: relative;
+}
+
+/* Individual Suggestions */
+#suggestions div {
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #ddd;
+    margin: 4px;
+    padding: 6px;
+    background-color: #f9f9f9; /* Light background */
+    color: #333;
+}
+
+/* Suggestion Hover */
+#suggestions div:hover {
+    background-color: #0066cc; /* Bright blue */
+    color: #fff;
+    transition: 0.3s;
+}
+
+/* Header */
+.header {
+    color: #fff;
+    background-color: #003366; /* Dark navy */
+    font-size: 1.2em;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Times New Roman', serif;
+   
+}
+
+/* Table Styling */
+table {
+    color: #333;
+    width: 80%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    margin-left: 10%;
+}
+
+/* Table Header & Cell */
+th, td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 12px;
+}
+
+th {
+    background-color: #003366; /* Consistent navy header */
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Table Cell Hover */
+td:hover {
+    background-color: #d1e0ff; /* Light blue on hover */
+    color: #000;
+}
+
+/* Filter Section */
+.filter {
+    display: flex;
+    width: 100%;
+    background-color: #003366;
+    border-radius: 8px;
+    padding: 8px;
+    justify-content: center;
+}
+
+.filter label {
+    background-color: #e6e6e6;
+    border-radius: 5px;
+    padding: 6px;
+    margin: 5px;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.filter select, .filter input {
+    border-radius: 5px;
+    padding: 6px;
+    width: 150px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    color: #333;
+}
+
+/* Text Input */
+input[type="text"] {
+    max-width: 70%;
+    min-width: 20%;
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: transparent;
+    color: #333;
+    outline: none;
+    border: 0;
+}
+
+/* Placeholder Text */
+input::placeholder {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+/* Arrow Button */
+#left-arrow, #right-arrow {
+    width: 60px;
+    height: 60px;
+    margin-top: 200px;
+    background-color: white;
+    color: navy;
+    font-size: large;
+    border: 1px solid navy;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+/* Disabled Arrow Button */
+#left-arrow:disabled, #right-arrow:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Container Styling */
+.container {
+    display: grid;
+    grid-template-columns: 18% 82%;
+    border: 1px solid #ccc;
+    background-color: #f8f9fa; /* Light neutral */
+    border-radius: 5px;
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.chart-container{
+    padding: 2px;
+    
+    overflow-y:auto;
+    scrollbar-width: none;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(250, 249, 252);
+    width:100%;
+    
+    
+}
+
+
+
+ .sideBar{
+    position: relative;
+    overflow: hidden;
+    top: 0;
+    /* flex: 0 0 20%; */
+    /* border: 3px solid orange; */
+    background-color:  #003366;
+    display:flex;
+    flex-direction: column;
+
+} */
+/* Center-aligned Sections */
+.cn3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.searchBox {
+    display: flex;
+    justify-content: center;
+    margin-top:0px ;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 3px;
+    align-items: center;
+    /* border: 2px solid  #003366; */
+    background-color: #f5f5f5;
+    border-radius: 28px;
+    padding: 4px;
+    
+}
+
+/* Chart Container */
+.c111 {
+    height: 400px;
+    width: 800px;
+}
+
+#c5 canvas, #c6 canvas {
+    background-color: #fff;
+    color: blue;
+}
+
+/* Button Hover */
+#left-arrow:hover, #right-arrow:hover {
+    background-color: #003366;
+    color: #fff;
+    cursor: pointer;
+}
+
+.searchBoxContainer{
+    margin-top: 0px;
+    padding: 2px;
+    min-height: 600px;
+}
+
+#dptHeader {
+    color: #fff;
+    margin: 0px;
+    background-color: #003366; /* Dark navy */
+    font-size: 1.2em;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Times New Roman', serif;
+}

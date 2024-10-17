@@ -189,8 +189,8 @@ input::placeholder{
     margin: 0px;
     
 }
-.c2{
-    
+.chart-container
+{
     overflow-y:auto;
     scrollbar-width: none;
     overflow-x: hidden;
@@ -201,6 +201,7 @@ input::placeholder{
     /* border: 3px solid orangered; */
     padding-top: 2em;
 }
+   
 
 
 
