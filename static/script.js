@@ -229,6 +229,7 @@ $(document).ready(function() {
                 datasets: datasets
             },
             options: {
+                maintainAspectRatio: false,
                 plugins: {
                     title: {
                         display: true,
@@ -276,6 +277,8 @@ $(document).ready(function() {
                             color: 'navy',
                             width: 2
                         },
+                        
+                
                     },
                     y: {
                         borderWidth: 1,

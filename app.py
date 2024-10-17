@@ -5,7 +5,7 @@ import os
 import json
 import pandas as pd
 
-path_r= 'D:/DEMO/DESTINATION'
+path_r= 'D:\\NeuroDash - Copy\\DEMO\\DESTINATION'
 
 
 app = Flask(__name__)
@@ -19,7 +19,7 @@ def get_suggestions():
     search_term = request.form['search_term']
     suggestions = []
 
-    with open('D:/DEMO/DESTINATION/patients.csv', mode='r') as file:
+    with open('D:/NeuroDash - Copy/DEMO/DESTINATION/patients.csv', mode='r') as file:
         csv_reader = csv.DictReader(file)
         for row in csv_reader:
             if search_term.lower() in row['uniqueid'].lower():
