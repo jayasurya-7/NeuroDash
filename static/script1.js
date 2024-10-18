@@ -179,157 +179,7 @@ $(document).ready(function() {
         }
     });
 
-    // function generateGraph(data, unicode) {
-    //     if (window.myChart != undefined && window.myChart instanceof Chart) {
-    //         window.myChart.destroy();
-    //     }
-
-    //     var canvas = document.getElementById("myChart");
-    //     var context = canvas.getContext('2d');
-    //     context.clearRect(0, 0, canvas.width, canvas.height);
-
-    //     var ctx = document.getElementById('myChart').getContext('2d');
-
-    //     var last20DaysData = data.slice(-daysToShow); // Changed to slice the last 20 data points
-    //     var fixedColors = ['rgba(255, 99, 132, 0.7)', 'rgba(255, 159, 64, 0.7)', 'rgba(160, 32, 230, 0.7)', 'rgba(75, 192, 192, 0.7)'];
-
-    //     var dates = last20DaysData.map(entry => entry['date']);
-    //     console.log(dates);
-
-    //     var datasets = [];
-
-    //     var devices = Object.keys(last20DaysData[0]).filter(key => key !== 'date');
-
-    //     devices.forEach((device, index) => {
-    //         var points = last20DaysData.map(entry => {
-    //             var date = entry['date']; // Date is not converted to a JavaScript Date object
-    //             var value = entry[device];
-    //             // Only plot points if the value is not 0
-    //             if (value !== 0) {
-    //                 return { x: date, y: index }; // Using index as y value for device names
-    //             } else {
-    //                 return null; // Return null for values 0 to skip plotting
-    //             }
-    //         }).filter(point => point !== null); // Remove null values
-
-    //         datasets.push({
-    //             label: device,
-    //             data: points,
-    //             backgroundColor: fixedColors[index % fixedColors.length],
-    //             pointRadius: 7.5,
-    //             pointHoverRadius: 7,
-    //             borderWidth: 1,
-    //             showLine: false
-    //         });
-    //     });
-
-    //     window.myChart = new Chart(ctx, {
-    //         type: 'bubble',
-    //         data: {
-    //             datasets: datasets
-    //         },
-    //         options: {
-    //             maintainAspectRatio: false,
-    //             plugins: {
-    //                 title: {
-    //                     display: true,
-    //                     text: 'Device Usage',
-    //                     position: 'bottom',
-    //                     font: {
-    //                         size: 18,
-    //                     }
-    //                 },
-    //                 legend: {
-    //                     position: 'bottom'
-    //                 },
-    //                 tooltip: {
-    //                     callbacks: {
-    //                         title: function(tooltipItem, data) {
-    //                             return ''; // Empty string to hide x-axis label
-    //                         },
-    //                         label: function(context) {
-    //                             var datasetLabel = context.dataset.label || '';
-    //                             var dataPoint = context.dataset.data[context.dataIndex];
-    //                             var value = dataPoint.y;
-    //                             var date = dataPoint.x;
-    //                             return datasetLabel + ': ' + date + '';
-    //                         }
-    //                     }
-    //                 }
-    //             },
-    //             elements: {
-    //                 point: {
-    //                     pointStyle: ''
-    //                 }
-    //             },
-    //             scales: {
-    //                 x: {
-    //                     type: 'category', // Use category scale to display dates as they are
-    //                     position: 'bottom',
-    //                     grid: {
-    //                         display: true,
-    //                         lineWidth: 2
-    //                     },
-    //                     ticks: {
-    //                         beginAtZero: false
-    //                     },
-    //                     border: {
-    //                         color: 'navy',
-    //                         width: 2
-    //                     },
-                        
-                
-    //                 },
-    //                 y: {
-    //                     borderWidth: 1,
-    //                     min: -0.3,
-    //                     max: devices.length - 0.6,
-    //                     border: {
-    //                         color: 'navy',
-    //                         width: 3,
-    //                         display: false
-    //                     },
-    //                     grid: {
-    //                         display: false,
-    //                     },
-    //                     reverse: true,
-    //                     ticks: {
-    //                         font: {
-    //                             size: 16,
-    //                             weight: "bold"
-    //                         },
-    //                         callback: function(value, index, values) {
-    //                             return devices[value] || ''; // Display device names instead of numbers
-    //                         }
-    //                     }
-    //                 }
-    //             },
-    //             onClick: function(evt, elements) {
-    //                 if (elements.length > 0) {
-    //                     var datasetIndex = elements[0].datasetIndex;
-    //                     var index = elements[0].index;
-    //                     console.log('DIndex:', datasetIndex);
-    //                     var devicex = datasets[datasetIndex].label;
-    //                     var date = datasets[datasetIndex].data[index].x;
-    //                         devicey= devicex;
-
-    //                     // Call function to fetch details from folder using device name and date
-    //                     fetchDataFromSpecificDate(devicex, date);
-    //                     scrolltoTarget2();
-    //                 }
-    //             }
-    //         }
-    //     });
-
-    //     function scrolltoTarget2() {
-    //         const target = document.getElementById('dates');
-    //         target.scrollIntoView({ behavior: 'smooth' });
-    //     }
-
-    //     generateBarChart(last20DaysData, devices);
-    //     generateTotalUsageDurationChart(data);
-    // }
-
+  
 
     function generateGraph(data, unicode) {
         if (window.myChart != undefined && window.myChart instanceof Chart) {
@@ -489,6 +339,13 @@ $(document).ready(function() {
         generateTotalUsageDurationChart(data);
     }
     
+   
+    
+
+
+
+
+
 
     $('#right-arrow').on('click', function() {
         currentStartIndex += step;
@@ -834,7 +691,161 @@ $(document).ready(function() {
     //     });
     // }
 
-
+    function generateTotalUsageDurationChart(data) {
+        if (window.myChart2 != undefined && window.myChart2 instanceof Chart) {
+            window.myChart2.destroy();
+        }
+        var canvas = document.getElementById("myChart2");
+        var context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    
+        var ctx = document.getElementById('myChart2').getContext('2d');
+        var last20DaysData = data.slice(-daysToShow);
+    
+        // Custom date parsing to ensure valid Date objects
+        last20DaysData = last20DaysData.map(entry => {
+            console.log("lastdate:", last20DaysData);
+            let dateParts = entry['date'].split('-');
+            let parsedDate = new Date(`${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`);
+            return { ...entry, date: parsedDate };
+        }).sort((a, b) => a.date - b.date);
+    
+        // Helper function to format dates for the x-axis
+        const formatDate = (date) => {
+            let d = new Date(date);
+            return d.toISOString().split('T')[0];
+        };
+    
+        // Determine all dates within the range, including any missing dates
+        const allDates = [];
+        const dateSet = new Set();
+    
+        // Generate the complete list of dates in the range
+        const startDate = new Date(last20DaysData[0].date);
+        for (let i = 0; i < daysToShow; i++) {
+            let currentDate = new Date(startDate);
+            currentDate.setDate(startDate.getDate() + i);
+            const formattedDate = formatDate(currentDate);
+            allDates.push(formattedDate);
+            dateSet.add(formattedDate);
+        }
+    
+        // Create datasets with gaps for missing dates
+        const dailyTotalUsage = Array(daysToShow).fill(null);
+        last20DaysData.forEach(entry => {
+            const formattedDate = formatDate(entry.date);
+            if (dateSet.has(formattedDate)) {
+                const dayIndex = allDates.indexOf(formattedDate);
+                let totalUsage = 0;
+    
+                Object.keys(entry).forEach(device => {
+                    if (device !== 'date') {
+                        totalUsage += entry[device];
+                    }
+                });
+                dailyTotalUsage[dayIndex] = totalUsage;
+            }
+        });
+    
+        // Define chart data
+        var chartData = {
+            labels: allDates,
+            datasets: [{
+                label: 'Total Usage Duration (seconds)',
+                data: dailyTotalUsage,
+                backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        };
+    
+        // Generate the chart
+        window.myChart2 = new Chart(ctx, {
+            type: 'bar',
+            data: chartData,
+            plugins: [ChartDataLabels],
+            options: {
+                barPercentage: 0.91,
+                scales: {
+                    y: {
+                        grace: 7,
+                        grid: {
+                            display: false
+                        },
+                        border: {
+                            display: true,
+                            color: 'navy'
+                        },
+                        ticks: {
+                            display: true,
+                            font: {
+                                size: 14,
+                                weight: 'bold',
+                                color: 'purple'
+                            }
+                        }
+                    },
+                    x: {
+                        border: {
+                            display: false,
+                        },
+                        ticks: {
+                            display: true,
+                            autoSkip: false,
+                            maxRotation: 90,
+                            minRotation: 45
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                },
+                indexAxis: 'x',
+                elements: {
+                    bar: {
+                        borderWidth: 6,
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Total Usage Duration in Minutes',
+                        font: {
+                            size: 18
+                        }
+                    },
+                    datalabels: {
+                        color: 'black',
+                        anchor: 'end',
+                        align: 'end',
+                        font: {
+                            weight: 'bold'
+                        },
+                        borderRadius: '10',
+                        borderColor: 'rgb(75, 192, 192)',
+                        borderWidth: 1,
+                    },
+                    legend: {
+                        display: false,
+                    },
+                    tooltip: {
+                        beginAtZero: true,
+                        callbacks: {
+                            label: function(context) {
+                                var label = context.dataset.label || '';
+                                if (context.parsed.y !== null) {
+                                    label += ': ' + context.parsed.y;
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+    
+    
     
     
     function fetchDataFromSpecificDate(device, date) {

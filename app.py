@@ -5,7 +5,7 @@ import os
 import json
 import pandas as pd
 
-path_r= 'D:\\NeuroDash - Copy\\DEMO\\DESTINATION'
+path_r= 'D:/DEMO/DESTINATION'
 
 
 app = Flask(__name__)
@@ -19,7 +19,7 @@ def get_suggestions():
     search_term = request.form['search_term']
     suggestions = []
 
-    with open('D:/NeuroDash - Copy/DEMO/DESTINATION/patients.csv', mode='r') as file:
+    with open('D:/DEMO/DESTINATION/patients.csv', mode='r') as file:
         csv_reader = csv.DictReader(file)
         for row in csv_reader:
             if search_term.lower() in row['uniqueid'].lower():
@@ -52,7 +52,7 @@ def get_json_data():
 def get_individual_dates():
     unicode_code = request.form['unicode']
     device = request.form['device']
-    unicode_path = os.path.join(path_r, unicode_code, device)  # Path to device folder
+    unicode_path = os.path.join(path_r, unicode_code, device)  # Path to device folder 
 
     individual_dates = []
 
