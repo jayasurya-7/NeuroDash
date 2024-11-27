@@ -337,12 +337,12 @@ input::placeholder {
 
 #c6 {
     justify-content: center;
-    width: 730px !important;
+    width: 790px !important;
     /* height: 300px !important; */
     
     background-color: #fff; /* White background */
     border-radius: 10px;
-    margin-left: 25px;
+    margin-left: 21px;
     /* border: 1px solid red; */
 
 }
