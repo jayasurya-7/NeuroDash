@@ -29,17 +29,17 @@ $(document).ready(function() {
                 window.myChart3.destroy();
                 scrolltoTarget1(); // Destroy myChart3 if it exists
             }
-             // Destroy myChart2 if it exists
-             if (window.myChart2) {
-                window.myChart2.destroy();
+             // Destroy totalDurationUsageChartCanvas if it exists
+             if (window.totalDurationUsageChartCanvas) {
+                window.totalDurationUsageChartCanvas.destroy();
             }
 
-            // Destroy myChart1 if it exists
-            if (window.myChart1) {
-                window.myChart1.destroy();
+            // Destroy totalDaysUsedChartCanvas if it exists
+            if (window.totalDaysUsedChartCanvas) {
+                window.totalDaysUsedChartCanvas.destroy();
             }
-            if (window.myChart) {
-                window.myChart.destroy();
+            if (window.deviceUsedOrNotChartCanvas) {
+                window.deviceUsedOrNotChartCanvas.destroy();
             }
             $('#start_date').val('');
             $('#end_date').val('');
@@ -165,9 +165,9 @@ $(document).ready(function() {
     }
 
     function updateChartType(newType) {
-        if (window.myChart) {
-            window.myChart.config.type = newType;
-            window.myChart.update();
+        if (window.deviceUsedOrNotChartCanvas) {
+            window.deviceUsedOrNotChartCanvas.config.type = newType;
+            window.deviceUsedOrNotChartCanvas.update();
         }
     }
 
@@ -179,164 +179,16 @@ $(document).ready(function() {
         }
     });
 
-    // function generateGraph(data, unicode) {
-    //     if (window.myChart != undefined && window.myChart instanceof Chart) {
-    //         window.myChart.destroy();
-    //     }
-
-    //     var canvas = document.getElementById("myChart");
-    //     var context = canvas.getContext('2d');
-    //     context.clearRect(0, 0, canvas.width, canvas.height);
-
-    //     var ctx = document.getElementById('myChart').getContext('2d');
-
-    //     var last20DaysData = data.slice(-daysToShow); // Changed to slice the last 20 data points
-    //     var fixedColors = ['rgba(255, 99, 132, 0.7)', 'rgba(255, 159, 64, 0.7)', 'rgba(160, 32, 230, 0.7)', 'rgba(75, 192, 192, 0.7)'];
-
-    //     var dates = last20DaysData.map(entry => entry['date']);
-    //     console.log(dates);
-
-    //     var datasets = [];
-
-    //     var devices = Object.keys(last20DaysData[0]).filter(key => key !== 'date');
-
-    //     devices.forEach((device, index) => {
-    //         var points = last20DaysData.map(entry => {
-    //             var date = entry['date']; // Date is not converted to a JavaScript Date object
-    //             var value = entry[device];
-    //             // Only plot points if the value is not 0
-    //             if (value !== 0) {
-    //                 return { x: date, y: index }; // Using index as y value for device names
-    //             } else {
-    //                 return null; // Return null for values 0 to skip plotting
-    //             }
-    //         }).filter(point => point !== null); // Remove null values
-
-    //         datasets.push({
-    //             label: device,
-    //             data: points,
-    //             backgroundColor: fixedColors[index % fixedColors.length],
-    //             pointRadius: 7.5,
-    //             pointHoverRadius: 7,
-    //             borderWidth: 1,
-    //             showLine: false
-    //         });
-    //     });
-
-    //     window.myChart = new Chart(ctx, {
-    //         type: 'bubble',
-    //         data: {
-    //             datasets: datasets
-    //         },
-    //         options: {
-    //             plugins: {
-    //                 title: {
-    //                     display: true,
-    //                     text: 'Device Usage',
-    //                     position: 'bottom',
-    //                     font: {
-    //                         size: 18,
-    //                     }
-    //                 },
-    //                 legend: {
-    //                     position: 'bottom'
-    //                 },
-    //                 tooltip: {
-    //                     callbacks: {
-    //                         title: function(tooltipItem, data) {
-    //                             return ''; // Empty string to hide x-axis label
-    //                         },
-    //                         label: function(context) {
-    //                             var datasetLabel = context.dataset.label || '';
-    //                             var dataPoint = context.dataset.data[context.dataIndex];
-    //                             var value = dataPoint.y;
-    //                             var date = dataPoint.x;
-    //                             return datasetLabel + ': ' + date + '';
-    //                         }
-    //                     }
-    //                 }
-    //             },
-    //             elements: {
-    //                 point: {
-    //                     pointStyle: ''
-    //                 }
-    //             },
-    //             scales: {
-    //                 x: {
-    //                     type: 'category', // Use category scale to display dates as they are
-    //                     position: 'bottom',
-    //                     grid: {
-    //                         display: true,
-    //                         lineWidth: 2
-    //                     },
-    //                     ticks: {
-    //                         beginAtZero: false
-    //                     },
-    //                     border: {
-    //                         color: 'navy',
-    //                         width: 2
-    //                     },
-    //                 },
-    //                 y: {
-    //                     borderWidth: 1,
-    //                     min: -0.3,
-    //                     max: devices.length - 0.6,
-    //                     border: {
-    //                         color: 'navy',
-    //                         width: 3,
-    //                         display: false
-    //                     },
-    //                     grid: {
-    //                         display: false,
-    //                     },
-    //                     reverse: true,
-    //                     ticks: {
-    //                         font: {
-    //                             size: 16,
-    //                             weight: "bold"
-    //                         },
-    //                         callback: function(value, index, values) {
-    //                             return devices[value] || ''; // Display device names instead of numbers
-    //                         }
-    //                     }
-    //                 }
-    //             },
-    //             onClick: function(evt, elements) {
-    //                 if (elements.length > 0) {
-    //                     var datasetIndex = elements[0].datasetIndex;
-    //                     var index = elements[0].index;
-    //                     console.log('DIndex:', datasetIndex);
-    //                     var devicex = datasets[datasetIndex].label;
-    //                     var date = datasets[datasetIndex].data[index].x;
-    //                         devicey= devicex;
-
-    //                     // Call function to fetch details from folder using device name and date
-    //                     fetchDataFromSpecificDate(devicex, date);
-    //                     scrolltoTarget2();
-    //                 }
-    //             }
-    //         }
-    //     });
-
-    //     function scrolltoTarget2() {
-    //         const target = document.getElementById('dates');
-    //         target.scrollIntoView({ behavior: 'smooth' });
-    //     }
-
-    //     generateBarChart(last20DaysData, devices);
-    //     generateTotalUsageDurationChart(data);
-    // }
-
     function generateGraph(data, unicode) {
-        if (window.myChart != undefined && window.myChart instanceof Chart) {
-            window.myChart.destroy();
+        if (window.deviceUsedOrNotChartCanvas != undefined && window.deviceUsedOrNotChartCanvas instanceof Chart) {
+            window.deviceUsedOrNotChartCanvas.destroy();
         }
     
-        var canvas = document.getElementById("myChart");
+        var canvas = document.getElementById("deviceUsedOrNotChartCanvas");
         var context = canvas.getContext('2d');
         context.clearRect(0, 0, canvas.width, canvas.height);
     
-        var ctx = document.getElementById('myChart').getContext('2d');
+        var ctx = document.getElementById('deviceUsedOrNotChartCanvas').getContext('2d');
     
         var last20DaysData = data.slice(-daysToShow); // Changed to slice the last 20 data points
         var fixedColors = ['rgba(255, 99, 132, 0.7)', 'rgba(255, 159, 64, 0.7)', 'rgba(160, 32, 230, 0.7)', 'rgba(75, 192, 192, 0.7)'];
@@ -366,7 +218,7 @@ $(document).ready(function() {
             });
         });
     
-        window.myChart = new Chart(ctx, {
+        window.deviceUsedOrNotChartCanvas = new Chart(ctx, {
             type: 'bubble',
             data: {
                 datasets: datasets
@@ -554,14 +406,14 @@ $(document).ready(function() {
 
 
     function generateBarChart(data, labels) {
-        if (window.myChart1 != undefined && window.myChart1 instanceof Chart) {
-            window.myChart1.destroy();
+        if (window.totalDaysUsedChartCanvas != undefined && window.totalDaysUsedChartCanvas instanceof Chart) {
+            window.totalDaysUsedChartCanvas.destroy();
         }
-        var canvas = document.getElementById("myChart1");
+        var canvas = document.getElementById("totalDaysUsedChartCanvas");
         var context = canvas.getContext('2d');
         context.clearRect(0, 0, canvas.width, canvas.height);
 
-        var ctx = document.getElementById('myChart1').getContext('2d');
+        var ctx = document.getElementById('totalDaysUsedChartCanvas').getContext('2d');
         var last20DaysData = data.slice(-daysToShow);
         var fixedColors = ['rgba(255, 99, 132, 0.7)', 'rgba(255, 159, 64, 0.7)', 'rgba(160, 32, 230, 0.7)', 'rgba(75, 192, 192, 0.7)'];
 
@@ -583,7 +435,7 @@ $(document).ready(function() {
             fill: false
         }];
 
-        window.myChart1 = new Chart(ctx, {
+        window.totalDaysUsedChartCanvas = new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: labels,
@@ -664,7 +516,7 @@ $(document).ready(function() {
                     if (elements.length > 0) {
                         var datasetIndex = elements[0].datasetIndex;
                         var index = elements[0].index;
-                        var device = window.myChart1.data.labels[index];
+                        var device = window.totalDaysUsedChartCanvas.data.labels[index];
                         console.log(device);
                       
                         
@@ -677,14 +529,14 @@ $(document).ready(function() {
     
 
     function generateTotalUsageDurationChart(data) {
-        if (window.myChart2 != undefined && window.myChart2 instanceof Chart) {
-            window.myChart2.destroy();
+        if (window.totalDurationUsageChartCanvas != undefined && window.totalDurationUsageChartCanvas instanceof Chart) {
+            window.totalDurationUsageChartCanvas.destroy();
         }
-        var canvas = document.getElementById("myChart2");
+        var canvas = document.getElementById("totalDurationUsageChartCanvas");
         var context = canvas.getContext('2d');
         context.clearRect(0, 0, canvas.width, canvas.height);
 
-        var ctx = document.getElementById('myChart2').getContext('2d');
+        var ctx = document.getElementById('totalDurationUsageChartCanvas').getContext('2d');
         var last20DaysData = data.slice(-daysToShow);
         var fixedColors = ['rgba(255, 99, 132, 0.7)', 'rgba(255, 159, 64, 0.7)', 'rgba(160, 32, 230, 0.7)', 'rgba(75, 192, 192, 0.7)'];
 
@@ -723,7 +575,7 @@ $(document).ready(function() {
 
     
 
-        window.myChart2 = new Chart(ctx, {
+        window.totalDurationUsageChartCanvas = new Chart(ctx, {
             type: 'bar',
             data: chartData,
             plugins: [ChartDataLabels],
@@ -884,7 +736,7 @@ $(document).ready(function() {
         $('.date-filter').show();
     }
     function showFilterSection1() {
-        $('.box').show();
+        $('.totalDaysUsedChartCanvas').show();
     }
     
     function in_d_graph1(device, date, data) {

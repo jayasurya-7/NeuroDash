@@ -1,38 +1,29 @@
-/* General styling */
+
 body {
     font-family: 'Lexend', sans-serif;
     font-size: 1em;
     color: #333;
     margin: 0;
-    background-color: #f5f5f5; /* Light background for a softer look */
+    background-color: #f5f5f5; 
 }
-
-
-.container{
+.mainContainer{
     display: grid;
     grid-template-columns: 18% 82%;
-    
     border: 1px solid rgb(252, 252, 252);
-    /* background-color: #130a64;
-     */
      background-color: #003366;
-
      margin: 0;
-    /* color: rgb(91, 236, 241); */
     height:100vh;
     overflow-y: hidden;
     scrollbar-width: none;
     border-radius: 5px;
 }
 
-
-/* Suggestion Box */
 #suggestions {
     cursor: pointer;
     padding: 5px;
     margin-top: 10px;
     border: 1px solid #ddd;
-    background-color: #ffffff; /* White background for contrast */
+    background-color: #ffffff; 
     border-radius: 5px;
     margin-bottom: 5px;
     min-width: 200px;
@@ -40,28 +31,26 @@ body {
     position: relative;
 }
 
-/* Individual Suggestions */
+
 #suggestions div {
     border-radius: 5px;
     text-align: center;
     border: 1px solid #ddd;
     margin: 2px;
     padding: 6px;
-    background-color: #f9f9f9; /* Light background */
+    background-color: #f9f9f9; 
     color: #333;
 }
 
-/* Suggestion Hover */
 #suggestions div:hover {
     background-color: #0066cc; /* Bright blue */
     color: #fff;
     transition: 0.3s;
 }
 
-/* Header */
 .header {
     color: #fff;
-    background-color: #003366; /* Dark navy */
+    background-color: #003366;
     font-size: 1.2em;
     text-align: center;
     font-weight: bold;
@@ -69,7 +58,6 @@ body {
    
 }
 
-/* Table Styling */
 table {
     color: #333;
     width: 80%;
@@ -79,7 +67,6 @@ table {
     margin-left: 10%;
 }
 
-/* Table Header & Cell */
 th, td {
     border: 1px solid #ddd;
     text-align: center;
@@ -87,7 +74,7 @@ th, td {
 }
 
 th {
-    background-color: #003366; /* Consistent navy header */
+    background-color: #003366; 
     color: #fff;
 }
 
@@ -95,13 +82,11 @@ tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-/* Table Cell Hover */
 td:hover {
-    background-color: #d1e0ff; /* Light blue on hover */
+    background-color: #d1e0ff; 
     color: #000;
 }
 
-/* Filter Section */
 .filter {
     display: flex;
     width: 100%;
@@ -119,7 +104,6 @@ td:hover {
     color: #333;
     border: 1px solid #ccc;
 }
-
 .filter select, .filter input {
     border-radius: 5px;
     padding: 6px;
@@ -128,8 +112,6 @@ td:hover {
     border: 1px solid #ddd;
     color: #333;
 }
-
-/* Text Input */
 input[type="text"] {
     max-width: 70%;
     min-width: 20%;
@@ -142,13 +124,9 @@ input[type="text"] {
     outline: none;
     border: 0;
 }
-
-/* Placeholder Text */
 input::placeholder {
     color: rgba(0, 0, 0, 0.7);
 }
-
-/* Arrow Button */
 #left-arrow, #right-arrow {
     width: 60px;
     height: 60px;
@@ -163,41 +141,32 @@ input::placeholder {
 #left,#right{
     width:33px;
     height: 33px;
-    /* margin-top: 10px; */
     border-radius: 70px;
-
-    font-size: large;
-    /* border-radius: 7px; */
-
+    font-size: large; 
     background-color: white;
     color: white;
     border: white;
-    
-    /* margin-left: 1000px; */
 }
-/* Disabled Arrow Button */
 #left-arrow:disabled, #right-arrow:disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
 
 #left:disabled {
-    background-image: url('l2.jpg'); /* Replace with your pale image path */
+    background-image: url('l2.jpg'); 
     cursor: not-allowed;
     opacity: 0.5;
 }
 #right:disabled {
-    background-image: url('r1.jpg'); /* Replace with your pale image path */
+    background-image: url('r1.jpg'); 
     cursor: not-allowed;
     opacity: 0.5;
 }
-
-/* Container Styling */
-.container {
+.mainContainer{
     display: grid;
     grid-template-columns: 18% 82%;
     border: 1px solid #ccc;
-    background-color: #f8f9fa; /* Light neutral */
+    background-color: #f8f9fa; 
     border-radius: 5px;
     height: 100vh;
     overflow-y: hidden;
@@ -205,7 +174,6 @@ input::placeholder {
 
 .chart-container{
     padding: 2px;
-    
     overflow-y:auto;
     scrollbar-width: none;
     overflow-x: hidden;
@@ -213,7 +181,6 @@ input::placeholder {
     flex-direction: column;
     background-color: rgb(250, 249, 252);
     width:100%;
-    
     padding-top: 0px;
 }
 
@@ -223,15 +190,12 @@ input::placeholder {
     position: relative;
     overflow: hidden;
     top: 0;
-    /* flex: 0 0 20%; */
-    /* border: 3px solid orange; */
     background-color:  #003366;
     display:flex;
     flex-direction: column;
 
-} */
-/* Center-aligned Sections */
-.cn3{
+} 
+.suggestionBox{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -244,17 +208,13 @@ input::placeholder {
     margin-right: 10px;
     margin-bottom: 3px;
     align-items: center;
-    /* border: 2px solid  #003366; */
     background-color: #f5f5f5;
     border-radius: 28px;
     padding: 4px;
     
 }
-
-
 /* Button Hover */
 #left-arrow:hover, #right-arrow:hover {
-    /* background-color: #003366; */
     color: #fff;
     cursor: pointer;
 }
@@ -268,7 +228,7 @@ input::placeholder {
 #dptHeader {
     color: #fff;
     margin: 0px;
-    background-color: #003366; /* Dark navy */
+    background-color: #003366; 
     font-size: 1.2em;
     text-align: center;
     font-weight: bold;
@@ -277,7 +237,6 @@ input::placeholder {
 .date-filter input{
     border-radius: 5px;
     text-align: center;
-    /* border:0px 1px solid rgb(27, 24, 24); */
     margin:2px;
     padding: 3px;
 }
@@ -287,122 +246,86 @@ input::placeholder {
 
 #session-charts-container {
     display: flex;
-    /* flex-direction: column; */
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
     width:95%;
-    /* border: 1px solid rebeccapurple; */
 }
 
 #session-charts-container canvas {
-    width: 380px !important;  /* Set the desired width */
-    height: 380px !important;  /* Set the desired height */
-    margin: 10px;  /* Add some spacing around each chart */
-    /* background-color: #f8f8f8;   */
-    /* border: 1px solid #ccc; */
+    width: 380px !important; 
+    height: 380px !important; 
+    margin: 10px;  
     border-radius: 5px;  /* Rounded corners */
 }
 
-
-
-
-
-.cnn{
+.overallChart{
     display: flex;
     flex-direction: column;
     background:  rgb(255,255,255);
-
-    /* border: 1px solid black; */
 }
 
 
-.cb{
+.overallChartCn{
     display:flex;
     flex-direction: row;
     border: 2px solid navy;
     border-radius: 4px;
     margin:10px;
 }
-.cnn2{
+.totalDurationUsageChart{
     width: 100%;
-    /* display: flex; */
-    /* border: 1px solid black; */
     margin-left: 50px;
-    /* padding: 10px; */
-    /* border: 1px solid blue; */
 
     
 }
 
-#c6 {
+#totalDurationUsageChartId {
     justify-content: center;
     width: 790px !important;
-    /* height: 300px !important; */
-    
-    background-color: #fff; /* White background */
+    background-color: #fff; 
     border-radius: 10px;
     margin-left: 21px;
-    /* border: 1px solid red; */
 
 }
-#c6 canvas{
+#totalDurationUsageChartId canvas{
     width: 100%; 
-    /* height:100%; */
 }
-.cnn1 {
+.deviceUsedOrNot{
     display: flex;
     width: 100%;
     margin: 0;
-    /* padding: 10px; */
-    /* height: 300px; */
     margin-left: 50px;
     height:400px;
-    /* border: 1px solid red; */
 }
-.c111{
+.deviceUsedOrNotL1{
     height: 400px;
-    /* width:800px; */
-   
-
 }
 
-.c222{
-    /* width:800px; */
+.deviceUsedOrNotL2{
     max-width: 800px;
-    /* overflow-x: scroll; */
 }
 
 
-#c4{
+#deviceUsedOrNotId{
     padding: 0px;
     height: 400px;
     width:800px;
-    /* border: 1px solid black; */
 }
-#c4 canvas,
-#c5 canvas {
+#deviceUsedOrNotId canvas,
+#totalDaysUsedChart canvas {
     background:  rgb(255,255,255);
     color: blue;
-    
-    /* border: 1px solid yellow; */
 }
 
 
-#c5 {
-    background-color: #fff; /* White background */
-     /* width:350px; */
-     /* height: 343px; */
+#totalDaysUsedChart
+ {
+    background-color: #fff; 
      padding-top: 5px;
      margin-left: 0px;
-     /* border: 1px solid black; */
 }
 
-.cnn3{
-    border: 2px solid navy;
-    border-radius: 4px;
-    margin: 10px;
-}
 
 .ind_date {
     border: 2px solid navy;
@@ -410,9 +333,8 @@ input::placeholder {
     margin: 10px;
     margin-top: 13px;
     align-items: center;
-    /* height: 500px; */
 }
-.box{
+.totalDaysUsedChartCanvas{
     height: 520px;
 }
 .buttons{

@@ -12,7 +12,7 @@
 
 </head>
 <body>
- <div class="container">
+ <div class="mainContainer">
         <div class="sideBar">
             <div class="header">
                 <h1>
@@ -26,7 +26,7 @@
                     <input type="text" id="search_input" placeholder="Search eg: 078924F">
                 </div> 
                 
-                    <div class="cn3">
+                    <div class="suggestionBox">
                         <div id="suggestions"></div>
                 
                             </div>
@@ -54,31 +54,30 @@
             <input type="date" id="end_date">
            
     </div>
-    <div class="cnn">    
-       <div class="cb">
+    <div class="overallChart">    
+       <div class="overallChartCn">
         <button id="left-arrow"><img src="{{ url_for('static', filename='l2.jpg') }}" alt="left-arrow" width="80px" height="80px"></button>
     
-       <div class="main">
-        <div class="cnn2">
+       <div class="combainedChartSystem">
+        <div class="totalDurationUsageChart">
             
-            <div id="c6">
-                <canvas id="myChart2" width="798px" height="200px"></canvas>
-             <!-- <canvas id="myChart2" width="730px"height="200px"></canvas> -->
+            <div id="totalDurationUsageChartId">
+                <canvas id="totalDurationUsageChartCanvas" width="798px" height="200px"></canvas>
             </div>
         </div>
-        <div class="cnn1">
-            <div class="c111">
-                <div class="c222">
-                    <div id="c4">
-                        <canvas id="myChart"></canvas>
+        <div class="deviceUsedOrNot">
+            <div class="deviceUsedOrNotL1">
+                <div class="deviceUsedOrNotL2">
+                    <div id="deviceUsedOrNotId">
+                        <canvas id="deviceUsedOrNotChartCanvas"></canvas>
                         
                     </div>
                
                 </div>
             </div>
         
-        <div id="c5"> 
-            <canvas id="myChart1" width="256px" height="330px"></canvas>
+        <div id="totalDaysUsedChart"> 
+            <canvas id="totalDaysUsedChartCanvas" width="256px" height="330px"></canvas>
         </div>
     </div>
        </div>
@@ -86,7 +85,7 @@
        </div>
    
 
-    <div class="box">
+    <div class="indSessionChart">
         <div class="ind_date" >
             <div class="buttons">
                 <button id="left"><img src="{{ url_for('static', filename='l2.jpg') }}" alt="left-arrow" width="33px" height="33px"></button>
