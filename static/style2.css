@@ -128,8 +128,8 @@ input::placeholder {
     color: rgba(0, 0, 0, 0.7);
 }
 #left-arrow, #right-arrow {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     margin-top: 210px;
     background-color: white;
     color: navy;
@@ -147,10 +147,18 @@ input::placeholder {
     color: white;
     border: white;
 }
-#left-arrow:disabled, #right-arrow:disabled {
-    opacity: 0.5;
+#left-arrow:disabled {
+    background-image: url('l2.jpg'); 
     cursor: not-allowed;
+    opacity: 0.5;
 }
+
+#right-arrow:disabled {
+    background-image: url('r1.jpg'); 
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
 
 #left:disabled {
     background-image: url('l2.jpg'); 
@@ -265,53 +273,80 @@ input::placeholder {
     background:  rgb(255,255,255);
 }
 
-
-.overallChartCn{
-    display:flex;
+.combainedChartSystem{
+    /* border: 1px solid rgb(70, 202, 70); */
+}
+.overallChartCn {
+    display: flex;
     flex-direction: row;
     border: 2px solid navy;
     border-radius: 4px;
-    margin:10px;
+    margin: 10px;
 }
+
+.overallChartCn [button] {
+    flex: 0 0 18%; 
+}
+
+.overallChartCn .combainedChartSystem {
+    flex: 0 0 80%; 
+}
+
 .totalDurationUsageChart{
     width: 100%;
-    margin-left: 50px;
-
-    
 }
 
 #totalDurationUsageChartId {
     justify-content: center;
-    width: 790px !important;
+    min-width: 750px;
+    min-height: 250px;
+    max-width:950px;
+    max-height: 250px;
+
     background-color: #fff; 
     border-radius: 10px;
-    margin-left: 21px;
+    margin-left: 105px;
 
 }
 #totalDurationUsageChartId canvas{
     width: 100%; 
 }
-.deviceUsedOrNot{
+.deviceUsedOrNot {
     display: flex;
     width: 100%;
     margin: 0;
     margin-left: 50px;
-    height:400px;
 }
+
 .deviceUsedOrNotL1{
-    height: 400px;
+   /* min-height: 400px; */
 }
 
 .deviceUsedOrNotL2{
-    max-width: 800px;
+    /* max-width: 800px; */
+    /* min-width: 800px; */
 }
 
 
-#deviceUsedOrNotId{
+/* #deviceUsedOrNotId{
     padding: 0px;
     height: 400px;
-    width:800px;
+    width:800px; 
+    min-height: 400px;
+    min-width:800px;
+    max-height: 700px;
+    max-width:1300px; 
+} */
+#deviceUsedOrNotId {
+    padding: 0;
+    min-height: 400px;
+    min-width: 1000px;
+    max-height: 700px;
+    max-width: 1300px; 
+    box-sizing: border-box; 
 }
+
+
 #deviceUsedOrNotId canvas,
 #totalDaysUsedChart canvas {
     background:  rgb(255,255,255);
@@ -322,9 +357,13 @@ input::placeholder {
 #totalDaysUsedChart
  {
     background-color: #fff; 
-     padding-top: 5px;
      margin-left: 0px;
-}
+     max-width: 300px;
+     max-height: 313px;
+     min-width: 300px;
+     min-height: 313px;
+     padding-left: 2px;   
+     }
 
 
 .ind_date {
@@ -334,9 +373,7 @@ input::placeholder {
     margin-top: 13px;
     align-items: center;
 }
-.totalDaysUsedChartCanvas{
-    height: 520px;
-}
+
 .buttons{
     display:flex;
     flex-direction: row;

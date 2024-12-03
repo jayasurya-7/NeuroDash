@@ -4,9 +4,9 @@ import csv
 import os
 import json
 import pandas as pd
+from datetime import datetime, timedelta
 
 path_r= 'D:/DEMO/DESTINATION'
-
 
 app = Flask(__name__)
 
@@ -57,54 +57,48 @@ def get_individual_dates():
     individual_dates = []
 
     if os.path.exists(unicode_path):
-        # List all files in the device folder (assuming each file represents a date)
         individual_dates = os.listdir(unicode_path)
 
     return jsonify({'individual_dates': individual_dates})  
 
-from datetime import datetime
-
-
 @app.route('/fetch_summary_csv', methods=['POST'])
 def fetch_summary_csv():
     unicode_code = request.form['unicode']
-    start_date = request.form.get('start_date')  # Get optional start date parameter
-    end_date = request.form.get('end_date')      # Get optional end date parameter
-
     summary_csv_path = os.path.join(path_r, unicode_code, 'summary.csv')
 
     if os.path.exists(summary_csv_path):
-        # Read the summary CSV file
         df = pd.read_csv(summary_csv_path)
 
-     
-             # Filter data based on optional start and end dates if provided
-        if start_date and end_date:
-            filtered_data = []
-            for index, row in df.iterrows():
-                date_str = row['date']
-                date_obj = datetime.strptime(date_str, '%d-%m-%Y')
-                if start_date <= date_obj.strftime('%Y-%m-%d') <= end_date:
-                    filtered_data.append(row)
+        # Ensure the 'date' column is in datetime format
+        df['date'] = pd.to_datetime(df['date'], format='%d-%m-%Y')
 
-            # total_points = filtered_data.sum().sum()
-            # Convert the filtered data to JSON
-            json_data = pd.DataFrame(filtered_data).to_json(orient='records')
-        else:
-            # Convert the DataFrame to JSON
-            json_data = df.to_json(orient='records')
-            # total_points = df.sum().sum()  
+        df = df.sort_values('date')
+        first_date = df['date'].iloc[0]
 
-        # Convert DataFrame to list of dictionaries
-        # json_data = df.to_dict(orient='records')
-        # json_data = df.to_json(orient='records')
-        print(df.head())
+        if len(df) < 20:
+            num_missing_dates = 20 - len(df)
+            missing_dates = [first_date - timedelta(days=i) for i in range(1, num_missing_dates + 1)]
+            missing_dates.reverse()  
 
+            # Create a DataFrame for the missing dates with zero values
+            missing_dates_df = pd.DataFrame({
+                'date': missing_dates,
+                'mars': [0] * num_missing_dates,
+                'pluto': [0] * num_missing_dates,
+                'mobbo': [0] * num_missing_dates,
+                'R2': [0] * num_missing_dates
+            })
+
+            # Combine the original data with the missing dates
+            df = pd.concat([missing_dates_df, df], ignore_index=True)
+
+        df['date'] = df['date'].dt.strftime('%d-%m-%Y')
+
+        json_data = df.to_json(orient='records')
         return jsonify({'summary_data': json_data})
     else:
         return jsonify({'error': 'Summary CSV file not found'})
-
-
+    
 @app.route('/fetch_data_from_date_folder', methods=['POST'])
 def fetch_data_from_date_folder():
     unicode_code = request.form['unicode']
@@ -115,54 +109,12 @@ def fetch_data_from_date_folder():
     date_folder_path = os.path.join(path_r, unicode_code, device,"Dates",date+'.csv')
     print(date_folder_path)
     if os.path.exists(date_folder_path):
-        # Read the summary CSV file
         df = pd.read_csv(date_folder_path)
         data= df.to_dict(orient='records')
-    # Example: Read data from files in the date folder and return as JSON response
-   # Modify this to read data from the date folder
         return jsonify({'data': data})
         
     else:
         return jsonify({'error': 'date CSV file not found'})
-
-@app.route('/fetch_data_for_device', methods=['POST'])
-def fetch_data_for_device():
-    # Get device name and Unicode from the request
-    device = request.form['device']
-    unicode_code = request.form['unicode']
-    start_date = request.form.get('start_date')  # Get optional start date parameter
-    end_date = request.form.get('end_date')
-    device_csv_path = os.path.join(path_r, unicode_code,device, device + '.csv')
-    print(device_csv_path)
-    if os.path.exists(device_csv_path):
-        # Read the summary CSV file
-        df = pd.read_csv(device_csv_path)
-        print(df)
-
-
-        if start_date and end_date:
-            print(start_date, end_date)
-            filtered_data = []
-            for index, row in df.iterrows():
-                date_str = row['Date']
-                date_obj = datetime.strptime(date_str, '%d-%m-%Y')
-                if start_date <= date_obj.strftime('%Y-%m-%d') <= end_date:
-                    filtered_data.append(row)
-
-            # total_points = filtered_data.sum().sum()
-            # Convert the filtered data to JSON
-            json_data = pd.DataFrame(filtered_data).to_json(orient='records')
-        else:
-            # Convert the DataFrame to JSON
-            json_data = df.to_json(orient='records')
-            print(json_data)
-    
-        return jsonify({'device_data': json_data})
-    else:
-        return jsonify({'error': 'Summary CSV file not found'})
-    
-    
-   
 
 if __name__ == '__main__':
     app.run(debug=True)

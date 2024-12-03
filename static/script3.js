@@ -256,6 +256,7 @@ $(document).ready(function() {
                         pointStyle: ''
                     }
                 },
+                maintainAspectRatio: false,
                 scales: {
                     x: {
                         type: 'category', // Use category scale to display dates as they are
@@ -444,9 +445,9 @@ $(document).ready(function() {
             plugins: [ChartDataLabels],
             options: {
                 barPercentage:1.1,
+                maintainAspectRatio:false,
                 ticks:{
                     color: 'white'
-
                 },
                 
                 scales: {
@@ -461,6 +462,7 @@ $(document).ready(function() {
                     },
                     x: {
                         grace:3,
+                        display:false,
                         grid: {
                             display: false
                         }
@@ -580,12 +582,14 @@ $(document).ready(function() {
             data: chartData,
             plugins: [ChartDataLabels],
             options: {
-                barPercentage: 0.91,
+                barPercentage: 1.1,
+                maintainAspectRatio:false,
                 scales: {
                     
                     y :{
                         grace:7,
                         // max:999,
+                        display:false,
                         grid: {
                             display: false
                         },
@@ -617,6 +621,7 @@ $(document).ready(function() {
                             display: false
                         }
                     }
+                    
                 },
                 indexAxis: 'x', // Set orientation to vertical
                 elements: {

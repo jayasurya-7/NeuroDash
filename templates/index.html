@@ -56,33 +56,33 @@
     </div>
     <div class="overallChart">    
        <div class="overallChartCn">
-        <button id="left-arrow"><img src="{{ url_for('static', filename='l2.jpg') }}" alt="left-arrow" width="80px" height="80px"></button>
-    
-       <div class="combainedChartSystem">
-        <div class="totalDurationUsageChart">
+                <button id="left-arrow"><img src="{{ url_for('static', filename='l2.jpg') }}" alt="left-arrow" width="80px" height="80px"></button>
             
-            <div id="totalDurationUsageChartId">
-                <canvas id="totalDurationUsageChartCanvas" width="798px" height="200px"></canvas>
-            </div>
-        </div>
-        <div class="deviceUsedOrNot">
-            <div class="deviceUsedOrNotL1">
-                <div class="deviceUsedOrNotL2">
-                    <div id="deviceUsedOrNotId">
-                        <canvas id="deviceUsedOrNotChartCanvas"></canvas>
-                        
+            <div class="combainedChartSystem">
+                <div class="totalDurationUsageChart">
+                    
+                    <div id="totalDurationUsageChartId">
+                        <canvas id="totalDurationUsageChartCanvas"></canvas>
                     </div>
-               
+                </div>
+                <div class="deviceUsedOrNot">
+                    <div class="deviceUsedOrNotL1">
+                        <div class="deviceUsedOrNotL2">
+                            <div id="deviceUsedOrNotId">
+                                <canvas id="deviceUsedOrNotChartCanvas"></canvas>
+                                
+                            </div>
+                    
+                        </div>
+                    </div>
+                
+                <div id="totalDaysUsedChart"> 
+                    <canvas id="totalDaysUsedChartCanvas" ></canvas>
                 </div>
             </div>
-        
-        <div id="totalDaysUsedChart"> 
-            <canvas id="totalDaysUsedChartCanvas" width="256px" height="330px"></canvas>
+            </div>
+            <button id="right-arrow"><img src="{{ url_for('static', filename='r1.jpg') }}" alt="right-arrow" width="80px" height="80px"></button>
         </div>
-    </div>
-       </div>
-       <button id="right-arrow"><img src="{{ url_for('static', filename='r1.jpg') }}" alt="right-arrow" width="80px" height="80px"></button>
-       </div>
    
 
     <div class="indSessionChart">
