@@ -33,16 +33,17 @@ def get_suggestions():
 def get_json_data():
     unicode_code = request.form['unicode']
     print(unicode_code)
-    json_path = os.path.join(path_r, unicode_code, unicode_code + '.json')  # Adjust the path to include the unicode folder
+    json_path = os.path.join(path_r, unicode_code, unicode_code + '.json') 
+    
     json_data = []
 
-    print("JSON Path:", json_path)  # Check the JSON file path
+    print("JSON Path:", json_path)
     if os.path.exists(json_path):
         print("File exists")
         with open(json_path, 'r') as json_file:
             print("File opened successfully")
             json_data.append(json.load(json_file))
-            print(json_data)  # Log the loaded JSON data
+            print(json_data)  
     else:
         print("File does not exist")
 
@@ -52,7 +53,7 @@ def get_json_data():
 def get_individual_dates():
     unicode_code = request.form['unicode']
     device = request.form['device']
-    unicode_path = os.path.join(path_r, unicode_code, device)  # Path to device folder 
+    unicode_path = os.path.join(path_r, unicode_code, device) 
 
     individual_dates = []
 
@@ -60,45 +61,65 @@ def get_individual_dates():
         individual_dates = os.listdir(unicode_path)
 
     return jsonify({'individual_dates': individual_dates})  
+ 
 
 @app.route('/fetch_summary_csv', methods=['POST'])
 def fetch_summary_csv():
     unicode_code = request.form['unicode']
+    start_date = request.form.get('start_date') 
+    end_date = request.form.get('end_date')     
     summary_csv_path = os.path.join(path_r, unicode_code, 'summary.csv')
 
     if os.path.exists(summary_csv_path):
         df = pd.read_csv(summary_csv_path)
 
-        # Ensure the 'date' column is in datetime format
-        df['date'] = pd.to_datetime(df['date'], format='%d-%m-%Y')
+        if start_date and end_date:
+            # Convert start and end dates to datetime
+            start_date_obj = datetime.strptime(start_date, '%Y-%m-%d')
+            end_date_obj = datetime.strptime(end_date, '%Y-%m-%d')
 
-        df = df.sort_values('date')
-        first_date = df['date'].iloc[0]
 
-        if len(df) < 20:
-            num_missing_dates = 20 - len(df)
-            missing_dates = [first_date - timedelta(days=i) for i in range(1, num_missing_dates + 1)]
-            missing_dates.reverse()  
+            df['date'] = pd.to_datetime(df['date'], format='%d-%m-%Y')
 
-            # Create a DataFrame for the missing dates with zero values
-            missing_dates_df = pd.DataFrame({
-                'date': missing_dates,
-                'mars': [0] * num_missing_dates,
-                'pluto': [0] * num_missing_dates,
-                'mobbo': [0] * num_missing_dates,
-                'R2': [0] * num_missing_dates
-            })
 
-            # Combine the original data with the missing dates
-            df = pd.concat([missing_dates_df, df], ignore_index=True)
+            full_date_range = pd.date_range(start=start_date_obj, end=end_date_obj)
+            df.set_index('date', inplace=True)
+            df = df.reindex(full_date_range, fill_value=0).reset_index()
 
-        df['date'] = df['date'].dt.strftime('%d-%m-%Y')
 
-        json_data = df.to_json(orient='records')
+            df.rename(columns={'index': 'date'}, inplace=True)
+            df['date'] = df['date'].dt.strftime('%d-%m-%Y') 
+
+            json_data = df.to_json(orient='records')
+        else:
+            df['date'] = pd.to_datetime(df['date'], format='%d-%m-%Y')
+            df = df.sort_values('date')
+
+            first_date = df['date'].iloc[0]
+
+            if len(df) < 20:
+                num_missing_dates = 20 - len(df)
+                missing_dates = [first_date - timedelta(days=i) for i in range(1, num_missing_dates + 1)]
+                missing_dates.reverse()  
+
+                missing_dates_df = pd.DataFrame({
+                    'date': missing_dates,
+                    'mars': [0] * num_missing_dates,
+                    'pluto': [0] * num_missing_dates,
+                    'mobbo': [0] * num_missing_dates,
+                    'R2': [0] * num_missing_dates
+                })
+
+                df = pd.concat([missing_dates_df, df], ignore_index=True)
+
+            df['date'] = df['date'].dt.strftime('%d-%m-%Y')  
+            json_data = df.to_json(orient='records')
+
         return jsonify({'summary_data': json_data})
     else:
         return jsonify({'error': 'Summary CSV file not found'})
     
+
 @app.route('/fetch_data_from_date_folder', methods=['POST'])
 def fetch_data_from_date_folder():
     unicode_code = request.form['unicode']

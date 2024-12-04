@@ -4,7 +4,7 @@ import csv
 import json
 from datetime import datetime
 
-# Define the source directories and the destination directory
+
 source_dirs = ['D:/DEMO/mars', 'D:/DEMO/mobbo', 'D:/DEMO/hypercube', 'D:/DEMO/R2']
 destination_dir = "D:\\DEMO\\DESTINATION"
 PATIENTS_CSV = os.path.join(destination_dir, 'patients.csv')
@@ -56,7 +56,6 @@ def save_to_destination(unique_id, device_name, summary, game_durations, session
     unique_id_dir = os.path.join(destination_dir, unique_id)
     os.makedirs(unique_id_dir, exist_ok=True)
 
-    # Save uniqueid.json
     id_json_path = os.path.join(unique_id_dir, f'{unique_id}.json')
     with open(id_json_path, 'w') as json_file:
         json.dump(patient_data, json_file)
@@ -64,7 +63,6 @@ def save_to_destination(unique_id, device_name, summary, game_durations, session
     device_dir = os.path.join(unique_id_dir, device_name)
     os.makedirs(device_dir, exist_ok=True)
 
-    # Save summary and sessions data
     summary_file = os.path.join(device_dir, 'sessiondata.csv')
     sessions_file = os.path.join(device_dir, 'Sessions.csv')
     summary.to_csv(summary_file, index=False)
@@ -85,7 +83,6 @@ def save_to_destination(unique_id, device_name, summary, game_durations, session
     device_summary.to_csv(device_summary_file, index=False)
 
 def aggregate_data():
-    # Dictionary to hold device usage per date for each unique_id
     aggregate_dict = {}
 
     for id_folder in os.listdir(destination_dir):
@@ -140,7 +137,6 @@ def main():
                 json_file_path = os.path.join(id_path, 'patient.json')
                 if os.path.exists(session_file_path) and os.path.exists(json_file_path):
                     try:
-                        # Load patient data from JSON file
                         with open(json_file_path, 'r') as json_file:
                             patient_data = json.load(json_file)
                     except json.JSONDecodeError as e:
@@ -150,7 +146,6 @@ def main():
                     unique_id = id_folder
                     patient_name = patient_data.get('name', 'Unknown')
 
-                    # Save patient to patients.csv
                     save_patient(unique_id, patient_name)
 
                     df = pd.read_csv(session_file_path)
@@ -158,7 +153,6 @@ def main():
                     device_name = os.path.basename(source_dir)  # Use the source directory name as the device name
                     save_to_destination(unique_id, device_name, summary, game_durations, df, patient_data)
 
-    # Generate separate summary.csv for each unique_id
     aggregate_data()
 
 if __name__ == "__main__":
