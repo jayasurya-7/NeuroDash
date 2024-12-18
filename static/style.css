@@ -89,18 +89,20 @@ td:hover {
   display: flex;
   width: 100%;
   background-color: #003366;
-  border-radius: 8px;
+  border-radius: 8px;                               
   padding: 8px;
   justify-content: center;
 }
 
 .filter label {
-  background-color: #e6e6e6;
+  /* background-color: #e6e6e6; */
   border-radius: 5px;
   padding: 6px;
   margin: 5px;
-  color: #333;
-  border: 1px solid #ccc;
+  font: bold;
+  size: 20px;
+  color: #fffdfd;
+  /* border: 1px solid #ccc; */
 }
 .filter select,
 .filter input {
@@ -348,4 +350,60 @@ input::placeholder {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+.overallChartCn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* width: 98%; */
+  height: auto;
+}
+
+#left-arrow, #right-arrow {
+  flex: 0 0 5%; /* Each button takes 10% of the width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.combainedChartSystem {
+  flex: 0 0 80%; /* Main chart container takes 80% of the width */
+  display: flex;
+  flex-direction: column;
+}
+/* Button styles */
+/* Button styles */
+#left-arrow, #right-arrow {
+  flex: 0 0 5%; /* Each button takes 10% of the width */
+  background: none; /* Remove default button styles */
+  border: none;
+  padding: 0; /* Remove padding for full image coverage */
+  cursor: pointer; /* Add a pointer cursor */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Image styles */
+#left-arrow img, #right-arrow img {
+  width: 100%; /* Ensure the image fills the button */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Remove extra whitespace */
+}
+/* #totalDurationUsageChartCanvas,
+#deviceUsedOrNotChartCanvas,
+#totalDaysUsedChartCanvas {
+  width: 100%;
+  height: auto;
+} */
+#left-arrow:disabled {
+  background-image: url("l2.jpg");
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+#right-arrow:disabled {
+  background-image: url("r1.jpg");
+  cursor: not-allowed;
+  opacity: 0.5;
 }
